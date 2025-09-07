@@ -1,1 +1,2 @@
 # FaceForge
+FaceForge is an AI-powered webapp for deepfake generation and detection. Upload a face image, map it onto a target video to create a deepfake, and verify authenticity with a built in detection model using GANs, CNNs, OpenCV, and Flask.
