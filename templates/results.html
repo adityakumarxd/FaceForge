@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card results-card">
+    <h2 style="color: #5865F2;">Your Deepfake Results</h2>
+    <div class="preview-section">
+        <h4>Original Video</h4>
+        <video width="400" controls>
+            <source src="{{ url_for('uploaded_file', filename=video_filename) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        {% if generated_filename %}
+        <h4>DeepFaked Video</h4>
+        <video width="400" controls>
+            <source src="{{ url_for('uploaded_file', filename=generated_filename) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <a href="{{ url_for('uploaded_file', filename=generated_filename) }}" class="accent-button" download>Download DeepFake</a>
+        {% endif %}
+    </div>
+    {% if prediction %}
+    <div class="status-badge">
+        <span>{{ prediction }}</span>
+        <span>Confidence: {{ (confidence * 100) | round(2) }}%</span>
+    </div>
+    {% endif %}
+    <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+</div>
+{% endblock %}

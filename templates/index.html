@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="steps-container">
+    <h2 style="text-align: center; color: #5865F2;">How to Make a Deepfake Video</h2>
+    <div class="steps-grid">
+        <div class="step-card">
+            <span class="step-number">1</span>
+            <h3>Upload an Image and a Video</h3>
+            <ul class="step-list">
+                <li>Upload a clear, high quality image of the face you want to use</li>
+                <li>Upload the video you want to deep swap the face with</li>
+                <li>Supported format: MP4</li>
+            </ul>
+            <a href="{{ url_for('upload') }}" class="accent-button">Try It Now</a>
+        </div>
+        <div class="step-card">
+            <span class="step-number">2</span>
+            <h3>Let the AI Learn and Render</h3>
+            <ul class="step-list">
+                <li>Advanced face detection on every frame</li>
+                <li>Face swap and blending on each frame</li>
+                <li>Processing times may vary (2-10 mins typical)</li>
+            </ul>
+        </div>
+        <div class="step-card">
+            <span class="step-number">3</span>
+            <h3>Download Your Deepfake</h3>
+            <ul class="step-list">
+                <li>Preview your video in browser</li>
+                <li>Download in MP4 format</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

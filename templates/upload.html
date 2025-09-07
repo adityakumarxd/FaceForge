@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card generator-page">
+    <h2 style="color: #5865F2; margin-bottom:1rem;">Create Deep Fake Video</h2>
+
+    <div class="tip-banner">
+        <span>Get the best results by following these tips!</span>
+        <button class="tip-btn" onclick="document.getElementById('tips-modal').style.display='block'">View Tips</button>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="generator-form">
+        <div class="upload-section">
+            <div class="upload-box" onclick="document.getElementById('imageInput').click()">
+                <div class="upload-title">Source Image?</div>
+                <div class="upload-desc">Drag & drop your face image<br>or <span class="upload-link">click to browse</span></div>
+                <div class="upload-hint">JPG, PNG (max 10MB)</div>
+                <div class="upload-tooltip">This is the face you want to add to the video</div>
+                <input type="file" id="imageInput" style="display:none;" name="image" accept="image/jpeg,image/png" required>
+            </div>
+            <div class="upload-box" onclick="document.getElementById('videoInput').click()">
+                <div class="upload-title">Target Video?</div>
+                <div class="upload-desc">Drag & drop your target video<br>or <span class="upload-link">click to browse</span></div>
+                <div class="upload-hint">MP4 (max 200MB, 150 seconds)</div>
+                <div class="upload-tooltip">This is the video where the face will be applied</div>
+                <input type="file" id="videoInput" style="display:none;" name="video" accept="video/mp4,video/avi,video/mov" required>
+            </div>
+        </div>
+
+        <!-- Advanced Options -->
+
+        <button type="submit" class="accent-button big-button">Create Deep Fake Video</button>
+    </form>
+</div>
+
+<!-- Tips Modal -->
+<div id="tips-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+        <h3>Tips for Best Results</h3>
+        <ul>
+            <li>Use clear, front-facing face images without occlusions, sunglasses, or heavy makeup.</li>
+            <li>Target videos should be well-lit, high quality, and less than 200MB/150 seconds.</li>
+            <li>Keep the source image and face(s) in target video similar in size and expression for better blending.</li>
+            <li>If the video has multiple faces, use "Multiple Faces" option.</li>
+            <li>If the person is holding a mic or food near the mouth, enable "Mouth Mask" for more natural results.</li>
+        </ul>
+        <button onclick="document.getElementById('tips-modal').style.display='none'" class="accent-button" style="margin-top:1rem;">Close</button>
+    </div>
+</div>
+
+<script>
+    // Drag and drop highlight effect and input trigger
+    function addDragDrop(boxId, inputId) {
+        let box = document.getElementById(boxId);
+        let input = document.getElementById(inputId);
+
+        box.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            box.classList.add('drag-over');
+        });
+        box.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            box.classList.remove('drag-over');
+        });
+        box.addEventListener('drop', function(e) {
+            e.preventDefault();
+            input.files = e.dataTransfer.files;
+            box.classList.remove('drag-over');
+        });
+    }
+    addDragDrop('imageInput','imageInput');
+    addDragDrop('videoInput','videoInput');
+</script>
+{% endblock %}

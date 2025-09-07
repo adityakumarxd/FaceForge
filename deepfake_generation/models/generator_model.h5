@@ -1,0 +1,10 @@
+from keras.models import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+model.add(Dense(64, activation='relu', input_dim=100))
+model.add(Dense(1, activation='sigmoid'))
+
+
+# Save the model
+model.save('deepfake_generation/models/generator_model.h5')
